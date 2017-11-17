@@ -9,6 +9,7 @@ class CO(SensorModule):
     def run(self):
         try:
             mq = MQ()
+
             while self.running:
                 perc = mq.MQPercentage()
                 print("CO: %g ppm" % (perc["CO"]))

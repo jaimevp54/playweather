@@ -8,6 +8,7 @@ import time
 from playweather_station.sensors.helpers import pigpio
 
 
+
 class sensor:
     """
     A class to read relative humidity and temperature from the
@@ -244,6 +245,7 @@ class sensor:
 
 
 class DHT22(SensorModule):
+
     def run(self):
         # Intervalos de 3 segundos permiten que no se caiga o se quede en un loop infinito el DHT22
         INTERVAL = 3
