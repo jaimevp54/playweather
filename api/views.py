@@ -112,11 +112,11 @@ class ReadReading(View):
 # SERIALIZER VIEWS HERE
 
 
-class SensorViewSet(viewsets.ModelViewSet):
+class SensorViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Sensor.objects.all()
     serializer_class = SensorSerializer
 
 
-class StationViewSet(viewsets.ModelViewSet):
+class StationViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Station.objects.all()
     serializer_class = StationSerializer

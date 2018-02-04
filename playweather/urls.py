@@ -23,11 +23,10 @@ from api.views import NewReading, ReadReading, NewReadingsBundle
 import api.views
 
 api_v1_router = routers.DefaultRouter()
-api_v1_router.register(r'sensors', api.views.SensorViewSet)
 api_v1_router.register(r'stations', api.views.StationViewSet)
+api_v1_router.register(r'sensors', api.views.SensorViewSet)
 
 urlpatterns = [
-    url(r'^api/v1/',include(api_v1_router.urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^$', DashboardPage.as_view(), name='dashboard'),
     url(r'^stations/', StationIndexPage.as_view(), name='station_index'),
@@ -35,6 +34,7 @@ urlpatterns = [
     url(r'^sensors/', SensorIndexPage.as_view(), name='sensor_index'),
 
     # API
+    url(r'^api/v1/',include(api_v1_router.urls)),
     url(r'^api/sensor_reading/new/$', NewReading.as_view(), name='new_reading'),
     url(r'^api/sensor_reading/read/$', ReadReading.as_view(), name='read_reading'),
     url(r'^api/sensor_readings_bundle/new/$', NewReadingsBundle.as_view(), name='new_reading_bundle'),
