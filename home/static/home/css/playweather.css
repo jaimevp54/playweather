@@ -18,3 +18,10 @@
 .table tbody th{
     width: 20%;
 }
+.app-header.navbar .navbar-brand {
+    background-color: #fff;
+    background-image: url("../img/logo-word.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 130px auto;
+}
