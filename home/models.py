@@ -17,6 +17,9 @@ class Station(models.Model):
     last_activity_date = models.DateTimeField(null=True, default=datetime.min)
     date_registered = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name = "Estacion"
+
     @property
     def sensor_count(self):
         return len(self.sensor_set)
@@ -45,6 +48,9 @@ class Sensor(models.Model):
     date_registered = models.DateTimeField(auto_now=True)
     last_activity_date = models.DateTimeField(null=True, default=datetime.min)
 
+    class Meta:
+        verbose_name = "Sensor"
+
     @property
     def measure_unit(self):
         return {
@@ -66,6 +72,9 @@ class SensorReading(models.Model):
     date = models.DateTimeField(auto_now=True)
     data = models.TextField(default="error")
     sensor = models.ForeignKey(Sensor, related_name="readings")
+
+    class Meta:
+        verbose_name = "Lectura"
 
     def __str__(self):
         return f'Sensor:{self.sensor.id}. Value:{self.data}. at:{self.date} '
