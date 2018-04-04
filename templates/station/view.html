@@ -1,31 +1,19 @@
 {% extends 'base/base.html' %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item">Inicio</li>
+    <li class="breadcrumb-item">Estaciones</li>
+    <li class="breadcrumb-item">{{ station.name }}</li>
+{% endblock %}
 {% block content %}
     <div class="animated fadeIn">
         <div class="card">
+            <div class="card-header">
+                <h4> {{ station.name }} </h4>
+                <h6 class="text-muted">Registrada por: {{ station.owner }} en {{ station.date_registered|date:"SHORT_DATE_FORMAT"}} </h6>
+            </div>
+
+            <div id="map" style="width:100%;height:200px"></div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-6">
-                        <h1>{{ station.name }}</h1>
-                        <h4>Registrada por: {{ station.owner }}</h4>
-                        <p><b>En la fecha:</b> {{ station.date_registered }} </p>
-                        <h4>Ubicacion</h4>
-                        <ul>
-                            <li>Longitud: {{ station.location_longitude }}</li>
-                            <li>Latitud: {{ station.location_latitude }}</li>
-                            <li>Altitud: {{ station.location_altitude }}</li>
-                        </ul>
-                    </div>
-                    <div class="col-6">
-                        <div id="map" style="width:100%;height:400px"></div>
-                    </div>
-                </div>
-                <div class="row legend">
-                    <div class="col-12">
-                        {% for abbr, name in sensor_types.items %}
-                            <label class="col-md-3"><span class="badge badge-primary">{{ abbr }}</span> {{ name }}</label>
-                        {% endfor %}
-                    </div>
-                </div>
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" id="station-data" role="tablist">
                     {% for sensor in sensors %}
@@ -64,7 +52,12 @@
                     {% endfor %}
                 </div>
 
-                <div class="row">
+                <div class="row legend">
+                    <div class="col-12">
+                        {% for abbr, name in sensor_types.items %}
+                            <label class="col-md-3"><span class="badge badge-primary">{{ abbr }}</span> {{ name }}</label>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
             <!--/.card-->
@@ -88,6 +81,7 @@
 
             var marker = new google.maps.Marker({
                 position: location,
+                title: "Latitud:{{ station.location_latitude }} \nLongitud:{{ station.location_longitude }} \nAltitud: {{ station.location_altitude }}",
                 map: map
             })
         }
