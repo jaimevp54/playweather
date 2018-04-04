@@ -12,3 +12,12 @@
 .legends label{
     margin: 0 10px;
 }
+
+.table th, .table td , .btn{
+        padding: 0.25rem 0.75rem;
+        vertical-align: middle;
+}
+
+.table tbody th{
+    width: 20%;
+}

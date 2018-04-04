@@ -56,28 +56,27 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-6 text-center"><h2>Estaciones</h2></div>
-                            <div class="col-6 text-center"><h2>Sensores</h2></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
+                            <div class="col-12"><h2>Estaciones</h2></div>
+                            <div class="col-12">
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
-                                        <th></th>
+                                        <th>Registro</th>
                                         <th>Estaci&oacute;n</th>
                                         <th>Usuario</th>
+                                        <th>Ultima actividad</th>
                                         <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {% for station in recent_stations %}
                                         <tr>
-                                            <th scope="row">{{ station.date_registered|naturaltime}}</th>
-                                            <td>{{ station.name }}</td>
+                                            <th scope="row">{{ station.date_registered|date:"SHORT_DATE_FORMAT"}}</th>
+                                            <td>{{ station.name|truncatechars:15 }}</td>
                                             <td>
-                                                {{ station.owner }}
+                                                {{ station.owner|truncatechars:15 }}
                                             </td>
+                                            <td> {{ station.last_activity_date|naturaltime}}</td>
                                             <td>
                                                 <a href="{% url 'station_view' station_id=station.id %}">
                                                     <btn class="btn-info btn">Ver M&aacute;s</btn>
@@ -88,24 +87,29 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="col-6">
+                        </div>
+                        <div class="row">
+                            <div class="col-12"><h2>Sensores</h2></div>
+                            <div class="col-12">
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
-                                        <th></th>
+                                        <th>Registro</th>
                                         <th>Sensor</th>
                                         <th>Estacion</th>
+                                        <th>Ultima actividad</th>
                                         <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {% for sensor in recent_sensors %}
                                         <tr>
-                                            <th scope="row">{{ sensor.date_registered|naturaltime}}</th>
-                                            <td>{{ sensor.id }}</td>
+                                            <th scope="row">{{ sensor.date_registered|date:"SHORT_DATE_FORMAT"}}</th>
+                                            <td>{{ sensor.id|truncatechars:15  }}</td>
                                             <td>
                                                 {{ sensor.station.name|truncatechars:15 }}
                                             </td>
+                                            <td> {{ sensor.last_activity_date|naturaltime}}</td>
                                             <td>
                                                 <a href="{% url 'station_view' station_id=sensor.station.id %}">
                                                     <btn class="btn-info btn">Ver M&aacute;s</btn>
