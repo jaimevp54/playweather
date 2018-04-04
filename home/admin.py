@@ -4,7 +4,7 @@ from .models import Sensor, SensorReading, Station
 
 
 class SensorsInline(admin.TabularInline):
-    readonly_fields = ('id','station','description','type','last_activity_date')
+    readonly_fields = ('last_activity_date',)
     model = Sensor
 
 class SensorReadingsInline(admin.TabularInline):
@@ -16,7 +16,7 @@ class StationAdmin(admin.ModelAdmin):
     inlines = [SensorsInline]
 
 class SensorAdmin(admin.ModelAdmin):
-    readonly_fields = ('id','last_activity_date','station',)
+    readonly_fields = ('last_activity_date',)
     inlines = [SensorReadingsInline]
 
 class SensorReadingAdmin(admin.ModelAdmin):
