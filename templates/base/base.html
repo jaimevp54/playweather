@@ -26,14 +26,6 @@
     <button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">☰</button>
     <a class="navbar-brand" href="{% url 'dashboard' %}"></a>
     <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button">☰</button>
-
-    <ul class="nav navbar-nav d-md-down-none">
-    </ul>
-    <ul class="nav navbar-nav ml-auto" style="margin: 0 20px;">
-        <li class="nav-item dropdown">
-            <a class="nav-link" href="{% url 'admin:index' %}home">Administraci&oacute;n</a>
-        </li>
-    </ul>
 </header>
 
 <div class="app-body">
@@ -48,6 +40,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'sensor_index' %}"><i class="icon-speedometer"></i>Sensores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'admin:index' %}"><i class="icon-speedometer"></i>Administracion</a>
                 </li>
             </ul>
         </nav>
