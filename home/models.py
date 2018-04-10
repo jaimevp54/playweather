@@ -52,16 +52,16 @@ class Sensor(models.Model):
         verbose_name = "Sensor"
 
     @property
-    def measure_unit(self):
+    def measurement_unit(self):
         return {
-            'P': 'Pluvial',
-            'WS': 'Velocidad Viento',
-            'WD': 'Direccion Viento',
-            'UV': 'UV',
-            'TEMP': 'Temperatura',
-            'HUM': 'Humedad',
-            'CO': 'CO',
-            'CO2': 'CO2'
+            'P': 'mm',
+            'WS': 'KM/h',
+            'WD': '',
+            'UV': '',
+            'TEMP': '°C',
+            'HUM': '%',
+            'CO': 'ppm',
+            'CO2': 'ppm'
         }[self.type]
 
     def __str__(self):

@@ -104,6 +104,7 @@ class ReadReading(View):
         response = []
         for reading in list(readings.values('id', 'sensor', 'data', 'date')):
             reading['sensor_id'] = Sensor.objects.get(pk=reading['sensor']).id
+            reading['unit'] = Sensor.objects.get(pk=reading['sensor']).measurement_unit
             response.append(reading)
 
         return JsonResponse(response, safe=False)
