@@ -26,7 +26,7 @@ class Station(models.Model):
         return len(self.sensor_set)
 
     def __str__(self):
-        return f'{self.name} - Owner: {self.owner.username}'
+        return f'{self.name} - Usuario: {self.owner.username}'
 
 
 class Sensor(models.Model):
@@ -66,7 +66,7 @@ class Sensor(models.Model):
         }[self.type]
 
     def __str__(self):
-        return f'{self.id} - Installed at: {self.station.name}'
+        return f'{self.id} - Instalado en la estacion: {self.station.name}'
 
 
 class SensorReading(models.Model):
@@ -78,4 +78,4 @@ class SensorReading(models.Model):
         verbose_name = "Lectura"
 
     def __str__(self):
-        return f'Sensor:{self.sensor.id}. Value:{self.data}. at:{self.date} '
+        return f'Sensor:{self.sensor.id}. Valor:{self.data}. Fecha:{self.date} '
