@@ -27,6 +27,7 @@ api_v1_router.register(r'stations', api.views.StationViewSet)
 api_v1_router.register(r'sensors', api.views.SensorViewSet)
 
 urlpatterns = [
+    url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^$', DashboardPage.as_view(), name='dashboard'),
     url(r'^stations/', StationIndexPage.as_view(), name='station_index'),

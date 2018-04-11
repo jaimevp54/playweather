@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['*', '192.168.0.8']
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -134,3 +135,5 @@ REST_FRAMEWORK = {
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+GRAPPELLI_ADMIN_TITLE="Playweather"

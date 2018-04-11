@@ -8,17 +8,18 @@ from datetime import datetime, timedelta
 class Station(models.Model):
     TIME_TO_WAIT = 60  # Time to wait for activity before declaring station as inactive IN SECONDS
 
-    owner = models.ForeignKey(User)
+    owner = models.ForeignKey(User,verbose_name="Dueño")
     id = models.CharField(primary_key=True, max_length=255)  # TODO must be unique
-    name = models.CharField(max_length=255, unique=True)  # TODO must be unique
-    location_longitude = models.FloatField(null=True, editable=False)
-    location_latitude = models.FloatField(null=True, editable=False)
-    location_altitude = models.FloatField(null=True, editable=False)
-    last_activity_date = models.DateTimeField(null=True, default=datetime.min)
-    date_registered = models.DateTimeField(auto_now=True)
+    name = models.CharField(max_length=255, unique=True,verbose_name="Nombre")  # TODO must be unique
+    location_longitude = models.FloatField(null=True, editable=False,verbose_name="Longitud")
+    location_latitude = models.FloatField(null=True, editable=False,verbose_name="Latitud")
+    location_altitude = models.FloatField(null=True, editable=False,verbose_name="Altitud")
+    last_activity_date = models.DateTimeField(null=True, default=datetime.min, verbose_name="Ultima actividad")
+    date_registered = models.DateTimeField(auto_now=True, verbose_name="Fecha de registro")
 
     class Meta:
         verbose_name = "Estacion"
+        verbose_name_plural = "Estaciones"
 
     @property
     def sensor_count(self):
@@ -41,15 +42,15 @@ class Sensor(models.Model):
         ('CO2', 'CO2')
     ]
     id = models.CharField(primary_key=True, max_length=255)
-    description = models.TextField(blank=True)  # TODO can be null
-    type = models.CharField(max_length=255, choices=TYPE_CHOICES, default='Pluvial')
-
-    station = models.ForeignKey(Station, related_name='sensors')
-    date_registered = models.DateTimeField(auto_now=True)
-    last_activity_date = models.DateTimeField(null=True, default=datetime.min)
+    description = models.TextField(blank=True,verbose_name="Descripcion")  # TODO can be null
+    type = models.CharField(max_length=255, choices=TYPE_CHOICES, default='Pluvial',verbose_name="Tipo")
+    station = models.ForeignKey(Station, related_name='sensors',verbose_name="Estacion")
+    date_registered = models.DateTimeField(auto_now=True, verbose_name="Fecha de registro")
+    last_activity_date = models.DateTimeField(null=True, default=datetime.min, verbose_name="Ultima actividad")
 
     class Meta:
         verbose_name = "Sensor"
+        verbose_name_plural = "Sensores"
 
     @property
     def measurement_unit(self):
@@ -69,7 +70,7 @@ class Sensor(models.Model):
 
 
 class SensorReading(models.Model):
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField(auto_now=True,verbose_name="Fecha")
     data = models.TextField(default="error")
     sensor = models.ForeignKey(Sensor, related_name="readings")
 
